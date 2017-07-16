@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="如何建立自己的blog1. 需求分析分解问题：  要建立的blog类型？动态 or 静态 blog的存放。 独立主机 or 其他 建立自己的网页。 手写 or md格式文件转换  点上一根烟，默默的思考一下。从方便考虑，我需要的是一个静态(无数据库)，暂存在github上的，能够由md格式自动转换的blog。  2. 工具的选择 hexo负责md文件编辑和转换 git 用来上传文件至github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo建立blog">
+<meta property="og:url" content="http://yoursite.com/2017/07/15/howcreateablog/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如何建立自己的blog1. 需求分析分解问题：  要建立的blog类型？动态 or 静态 blog的存放。 独立主机 or 其他 建立自己的网页。 手写 or md格式文件转换  点上一根烟，默默的思考一下。从方便考虑，我需要的是一个静态(无数据库)，暂存在github上的，能够由md格式自动转换的blog。  2. 工具的选择 hexo负责md文件编辑和转换 git 用来上传文件至github">
+<meta property="og:updated_time" content="2017-07-16T13:24:45.123Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用hexo建立blog">
+<meta name="twitter:description" content="如何建立自己的blog1. 需求分析分解问题：  要建立的blog类型？动态 or 静态 blog的存放。 独立主机 or 其他 建立自己的网页。 手写 or md格式文件转换  点上一根烟，默默的思考一下。从方便考虑，我需要的是一个静态(无数据库)，暂存在github上的，能够由md格式自动转换的blog。  2. 工具的选择 hexo负责md文件编辑和转换 git 用来上传文件至github">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/15/howcreateablog/"/>
+
+
+
+
+
+  <title>使用hexo建立blog | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/howcreateablog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用hexo建立blog</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T21:42:02+08:00">
+                2017-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="如何建立自己的blog"><a href="#如何建立自己的blog" class="headerlink" title="如何建立自己的blog"></a>如何建立自己的blog</h1><h2 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1. 需求分析"></a>1. 需求分析</h2><p>分解问题：</p>
+<ol>
+<li>要建立的blog类型？动态 or 静态</li>
+<li>blog的存放。 独立主机 or 其他</li>
+<li>建立自己的网页。 手写 or md格式文件转换</li>
+</ol>
+<p>点上一根烟，默默的思考一下。从方便考虑，我需要的是一个静态(无数据库)，暂存在github上的，能够由md格式自动转换的blog。</p>
+<hr>
+<h2 id="2-工具的选择"><a href="#2-工具的选择" class="headerlink" title="2. 工具的选择"></a>2. 工具的选择</h2><ol>
+<li>hexo负责md文件编辑和转换</li>
+<li>git 用来上传文件至github</li>
+</ol>
+<h2 id="3-hexo的使用"><a href="#3-hexo的使用" class="headerlink" title="3. hexo的使用"></a>3. hexo的使用</h2><p>以下几篇blog可以大致了解hexo.</p>
+<h3 id="3-1-hexo主题"><a href="#3-1-hexo主题" class="headerlink" title="3.1 hexo主题"></a>3.1 hexo主题</h3><p>theme主题可以从 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">hexo-Themes</a> 下载</p>
+<ol>
+<li>用于了解hexo-themes结构 — <a href="http://www.maintao.com/2014/hexo-theme-from-scratch/" target="_blank" rel="external">从零开始定制hexo主题</a></li>
+</ol>
+<h3 id="3-2-hexo使用"><a href="#3-2-hexo使用" class="headerlink" title="3.2 hexo使用"></a>3.2 hexo使用</h3><ol>
+<li><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客</a></li>
+</ol>
+<h2 id="4-github"><a href="#4-github" class="headerlink" title="4. github"></a>4. github</h2><h3 id="4-1-建立github-page"><a href="#4-1-建立github-page" class="headerlink" title="4.1 建立github page"></a>4.1 建立github page</h3><h3 id="4-2-SSH与GPG"><a href="#4-2-SSH与GPG" class="headerlink" title="4.2 SSH与GPG"></a>4.2 SSH与GPG</h3><p>SSH是Secure Shell的缩写，而<a href="https://www.gnupg.org/" target="_blank" rel="external">GPG</a>是GNU PG的缩写。 GNU PG是PGP的GNU实现，而<a href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy" target="_blank" rel="external">PGP</a>为Pretty good privacy的缩写，一个非开源软件。</p>
+<p>github项目的提交可以通过HTTPS方式发送用户名/密码登陆，也可以通过SSH和GPG方式登陆。SSH和GPG可以理解成一种网络协议，同HTTPS，保证数据传输安全。但SSH和GPG方式不像HTTPS协议存在根证书的发布单位，使用口令登陆方式无法防止<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="external">中间人攻击</a>。</p>
+<p>发生上述攻击的原因是因为在没有根证书的情况下，客户端无法验证服务器端的真实性。SSH和GPG都是RSA算法的应用。RSA算法存在一个公钥和私钥对，通常情况下，私钥存在于服务器端，客户端登陆服务器时，服务器端会下发一个公钥给客户端端，客户端使用公钥加密自己的密码，发送给服务器端。服务器端使用私钥解密密码，验证用户密码的正确性。这种方式被称为<strong>口令登陆</strong>(服务器端保有用户密码)。</p>
+<p>但上诉过程也可以反其道行之，服务器端再保存用户的密码，而保存用户的公钥，在用户登录时，服务器会向客户端随机发送一段数据。客户端使用私钥加密数据，并发送给服务器端。如果服务器端使用公钥解密，如果能够解密成功，则允许用户登陆。这种方式被成为<strong>公钥登陆</strong>(服务器端保有用户公钥)。公钥登陆的好处是可以防止中间人攻击。</p>
+<p>关于SSH和GPG可以参考阮老师的文章。</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用（一）：远程登录</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2013/07/gpg.html" target="_blank" rel="external">GPG入门教程</a></li>
+</ul>
+<p>Github即允许客户进行口令登陆，也允许客户进行公钥登陆。Github这样设计有一定道理，允许公钥登陆能够在保证安全的情况下，方便第三方程序的集成和扩展。比如hexo在进行deploy代码到github的动作时，如果采用口令登陆，那么登陆口令对于第三方软件变的透明。但是如果采用公钥登陆，在整个过程中，第三方软件只能接触到用户的私钥，口令不会显式的出现在登陆场景中。</p>
+<p>在Github每个用户的key setting页面里，可以设置SSH和GPG的密钥。在安装了git客户端后，在git bash中可以产生ssh密钥。 过程如下：</p>
+<pre><code>// 1. 使用ssh-keygen创建key
+$ ssh-keygen -t rsa -C &quot;xxx@xxx.com&quot;
+Generating public/private rsa key pair.
+....
+Enter passphrase (empty for no passphrase): // 对私钥设置密码
+....
+The key fingerprint is:
+SHA: .....
+The key&apos;s randomart image is:
+.......
+
+// 2. 由于对私钥设置了密码，每次使用私钥时，程序会要求用户输入私钥密码
+// 使用SSH agent程序缓存已解密的私钥，在需要的时候提供给您的SSH客户端。
+// 这样只要输入一遍私钥密码即可
+$ eval &quot;ssh-agent -s&quot;
+....
+echo Agent pid 857996;
+
+// 3. 使用ssh-add，在登录shell的时候自动添加您的私钥到ssh-agent的缓存
+$ ssh-add ~/.ssh/id_rsa
+Could not open a connection to your authentication agent.
+$ ssh-agent bash
+$ ssh-add ~/.ssh/id_rsa
+$ Enter passphrase for /f/Gene/OpenSource/Psd/GithubSSH/id_rsa:
+$ Identity added: ~/.ssh/id_rsa (~/.ssh/id_rsa)
+
+// 4. 将key添加到github账户中去
+复制 ~/.ssh/id_rsa.pub到github SSH key中
+
+// 5. 测试
+$ ssh -T git@gitub.com
+</code></pre><p>关于ssh-keygen和ssh-agent的使用见<a href="https://wiki.archlinux.org/index.php/SSH_keys_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">SSH keys</a>)。</p>
+<p>上面的步骤中，只有1，4步是必要的。</p>
+<hr>
+<p>question</p>
+<ol>
+<li>寻找一个可以寄存blog的站点</li>
+<li>github上的hg-page分支解析md文件吗？<br>解析md文件 – 则直接上传md文件<br>不能解析 – 需要一个解析器生成html文件</li>
+<li>github上传<br>ssh的作用</li>
+<li>使用markdown</li>
+<li>使用hexo</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/15/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何建立自己的blog"><span class="nav-number">1.</span> <span class="nav-text">如何建立自己的blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-需求分析"><span class="nav-number">1.1.</span> <span class="nav-text">1. 需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-工具的选择"><span class="nav-number">1.2.</span> <span class="nav-text">2. 工具的选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-hexo的使用"><span class="nav-number">1.3.</span> <span class="nav-text">3. hexo的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-hexo主题"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 hexo主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-hexo使用"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 hexo使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-github"><span class="nav-number">1.4.</span> <span class="nav-text">4. github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-建立github-page"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 建立github page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-SSH与GPG"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 SSH与GPG</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
