@@ -1,6 +1,6 @@
 title: 使用hexo建立blog
 date: 2017-07-15 21:42:02
-tags:
+tags: [Computer,Front-end,Javascript]
 ---
 
 # 如何建立自己的blog #
@@ -18,25 +18,49 @@ tags:
 ----------
 
 ## 2. 工具的选择 ##
-1. hexo负责md文件编辑和转换
-2. git 用来上传文件至github
+1. Markdown编辑器
+2. hexo负责md文件转换，当然hexo也可以用于markdown文件的编辑。按照个人爱好。
+3. git用来上传文件至github进行部署
 
-## 3. hexo的使用 ##
-以下几篇blog可以大致了解hexo.
+## 3. Markdown ##
+Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。
+Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。
 
-### 3.1 hexo主题 ###
+以上介绍参考[Markdown 简介](https://wizardforcel.gitbooks.io/markdown-simple-world/0.html).关于Markdown的语法要求，文中也有详细的介绍。
+
+## 4. hexo的使用 ##
+Hexo是什么。 [Hexo](https://hexo.io/zh-cn/docs/index.html) 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 自己去看教程吧。
+
+### 4.1 hexo主题 ###
 
 theme主题可以从 [hexo-Themes](https://github.com/hexojs/hexo/wiki/Themes) 下载
 
 1. 用于了解hexo-themes结构 --- [从零开始定制hexo主题](http://www.maintao.com/2014/hexo-theme-from-scratch/)
 
-### 3.2 hexo使用 ###
+### 4.2 hexo使用 ###
+参见文章：
+
 1. [hexo你的博客](http://ibruce.info/2013/11/22/hexo-your-blog/)
+2. [Hexo使用攻略](http://ijiaober.github.io/categories/hexo/)
 
-## 4. github ##
-### 4.1 建立github page ###
+提一点需要注意的，在产生代码时：
+    
+    hexo generate
 
-### 4.2 SSH与GPG
+可能需要修改hexo的配置文件_config.yml，用于指定发布的目录。
+
+    ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+    url: http://yoursite.com/blog
+    root: /blog/
+
+
+## 5. github ##
+### 5.1 建立Github page ###
+Github page的建立见文章[一步步在GitHub上创建博客主页-最新版](http://www.pchou.info/ssgithubPage/2014-07-04-build-github-blog-page-08.html)。
+文章使用了jekyll去建立一个blog。其中提到，建立一个gh-pages分支，这可能和使用jekyll工具有关。使用hexo时，直接把blog放在master也没发现有什么影响。
+
+
+### 5.2 SSH与GPG
 SSH是Secure Shell的缩写，而[GPG](https://www.gnupg.org/)是GNU PG的缩写。 GNU PG是PGP的GNU实现，而[PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy)为Pretty good privacy的缩写，一个非开源软件。
 
 github项目的提交可以通过HTTPS方式发送用户名/密码登陆，也可以通过SSH和GPG方式登陆。SSH和GPG可以理解成一种网络协议，同HTTPS，保证数据传输安全。但SSH和GPG方式不像HTTPS协议存在根证书的发布单位，使用口令登陆方式无法防止[中间人攻击](https://en.wikipedia.org/wiki/Man-in-the-middle_attack)。
@@ -90,9 +114,10 @@ Github即允许客户进行口令登陆，也允许客户进行公钥登陆。Gi
 
 上面的步骤中，只有1，4步是必要的。
 
-## 5. 部署网站 ##
+## 6. 部署网站 ##
 部署非常简单。首先修改hexo目录下的配置文件_config.yml。
 
+    // 设置git的提交账户和提交的branch
     type: git
     repo: git@github.com:YourRepository.git.git
     branch: master
@@ -110,14 +135,12 @@ Github即允许客户进行口令登陆，也允许客户进行公钥登陆。Gi
     ............
     INFO  Deploy done: git                   // 成功
 
+## 7. 总结 ##
 
-----------
-question
-1. 寻找一个可以寄存blog的站点
-2. github上的hg-page分支解析md文件吗？
-   解析md文件 -- 则直接上传md文件
-   不能解析 -- 需要一个解析器生成html文件
-3. github上传
-   ssh的作用
-4. 使用markdown
-5. 使用hexo
+1. 选择一个markdown 编辑器，编写网页对应的md文件
+2. 用hexo去解析md文件，生成对应的html
+3. 选择一个hexo theme，使blog更好看
+4. 申请一个gitpage，并能够SSH登陆
+5. 上传生成的html文件
+
+然后，大功告成。 继续点上一支烟，思考人生吧。
