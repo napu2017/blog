@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: NAPU的理想国
+title: 走出理想国 走向理想国
 subtitle: 冰封大陆
-description: NAPU，京口人也。一匠人呼
+description: 
 author: napu
-language: zh-CN
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com/blog
-root: /blog/
+url: http://littlestory.cc
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -40,7 +40,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
   
 # Home page setting
@@ -80,3 +80,7 @@ deploy:
   type: git
   repo: git@github.com:napu2017/blog.git
   branch: gh-pages
+  
+# photo
+avatar: /images/avatar.png
+
